@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw31bqkdsxw7u"]
+
+[ext_resource type="Texture2D" uid="uid://bko6452hnavob" path="res://assets/bg.png" id="1_b1um0"]
+
+[node name="Clash" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.783523, 0.783523, 0.783523, 1)
+texture = ExtResource("1_b1um0")
+centered = false
+metadata/_edit_lock_ = true
