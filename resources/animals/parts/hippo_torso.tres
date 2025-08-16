@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AnimalPart" load_steps=3 format=3 uid="uid://bxw4ww06vwrtg"]
+
+[ext_resource type="Resource" uid="uid://dysgn062vb4cj" path="res://resources/animals/hippo.tres" id="1_00arl"]
+[ext_resource type="Script" uid="uid://b0dry3sjhfi2" path="res://resources/animals/parts/animal_part.gd" id="2_t10ml"]
+
+[resource]
+script = ExtResource("2_t10ml")
+animal = ExtResource("1_00arl")
+body_part = 1
+metadata/_custom_type_script = "uid://b0dry3sjhfi2"

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc2nw2w335ql"]
+
+[ext_resource type="Script" uid="uid://oqpv42uca77b" path="res://scripts/body_part_ui.gd" id="1_uh4gl"]
+[ext_resource type="Texture2D" uid="uid://dw1xqcm63kuet" path="res://assets/animals.png" id="2_tlgov"]
+[ext_resource type="Resource" uid="uid://d07b1vabbmpc8" path="res://resources/animals/parts/capybara_torso.tres" id="2_wvwd1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vq0d7"]
+size = Vector2(17, 40)
+
+[node name="BodyPartUI" type="Control" node_paths=PackedStringArray("sprite")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uh4gl")
+animal_part = ExtResource("2_wvwd1")
+sprite = NodePath("Sprite2D")
+
+[node name="DropPointDetector" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
+shape = SubResource("RectangleShape2D_vq0d7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tlgov")
+region_enabled = true
+region_rect = Rect2(17, 0, 17, 40)

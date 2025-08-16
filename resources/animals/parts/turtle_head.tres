@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AnimalPart" load_steps=3 format=3 uid="uid://c8dnuek374tel"]
+
+[ext_resource type="Script" uid="uid://b0dry3sjhfi2" path="res://resources/animals/parts/animal_part.gd" id="1_ge8b1"]
+[ext_resource type="Resource" uid="uid://bghdnn77ft044" path="res://resources/animals/turtle.tres" id="1_rcxjw"]
+
+[resource]
+script = ExtResource("1_ge8b1")
+animal = ExtResource("1_rcxjw")
+body_part = 0
+metadata/_custom_type_script = "uid://b0dry3sjhfi2"

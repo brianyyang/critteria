@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AnimalPart" load_steps=3 format=3 uid="uid://ds17o6qs14aju"]
+
+[ext_resource type="Resource" uid="uid://camsxd2ptjdiv" path="res://resources/animals/chimpanzee.tres" id="1_orkqi"]
+[ext_resource type="Script" uid="uid://b0dry3sjhfi2" path="res://resources/animals/parts/animal_part.gd" id="2_7nda0"]
+
+[resource]
+script = ExtResource("2_7nda0")
+animal = ExtResource("1_orkqi")
+body_part = 2
+metadata/_custom_type_script = "uid://b0dry3sjhfi2"

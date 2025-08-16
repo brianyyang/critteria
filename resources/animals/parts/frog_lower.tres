@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AnimalPart" load_steps=3 format=3 uid="uid://d4a3v7exxhy45"]
+
+[ext_resource type="Resource" uid="uid://dywj5clv06c6a" path="res://resources/animals/frog.tres" id="1_3w5tv"]
+[ext_resource type="Script" uid="uid://b0dry3sjhfi2" path="res://resources/animals/parts/animal_part.gd" id="2_hk5gv"]
+
+[resource]
+script = ExtResource("2_hk5gv")
+animal = ExtResource("1_3w5tv")
+body_part = 2
+metadata/_custom_type_script = "uid://b0dry3sjhfi2"

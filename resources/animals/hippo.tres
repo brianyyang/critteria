@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Animal" load_steps=2 format=3 uid="uid://dysgn062vb4cj"]
+
+[ext_resource type="Script" uid="uid://bva6el1dy0te" path="res://resources/animals/animal.gd" id="1_uoxcq"]
+
+[resource]
+script = ExtResource("1_uoxcq")
+animal_type = 10
+power = 3
+speed = 1
+endurance = 1
+swim = 0
+rarity = 2
+metadata/_custom_type_script = "uid://bva6el1dy0te"
