@@ -1,5 +1,5 @@
-class_name CardDraggingState
-extends CardState
+class_name BodyPartDraggingState
+extends BodyPartState
 
 const DRAG_MINIMUM_THRESHOLD := 0.05
 var minimum_drag_time_elapsed := false
@@ -22,11 +22,11 @@ func on_input(event: InputEvent) -> void:
 		body_part_ui.global_position = body_part_ui.get_global_mouse_position() - body_part_ui.pivot_offset
 
 	if cancel:
-		transition_requested.emit(self, CardState.State.Base)
+		transition_requested.emit(self, BodyPartState.State.Base)
 	elif minimum_drag_time_elapsed and confirm:
 		get_viewport().set_input_as_handled()
 		if body_part_ui.target_drop_points.is_empty():
-			transition_requested.emit(self, CardState.State.Base)
+			transition_requested.emit(self, BodyPartState.State.Base)
 		else:
 			if not body_part_ui.target_drop_points.is_empty():
 				var drop_area = body_part_ui.target_drop_points.get(0) as BodyDropArea
@@ -34,5 +34,6 @@ func on_input(event: InputEvent) -> void:
 
 func handle_drop_in_area(drop_area: BodyDropArea) -> void:
 	if drop_area.occupied:
-		drop_area.card_in_area.card_state_machine.reset_state()
-	transition_requested.emit(self, CardState.State.Released)
+		drop_area.remove_animal_stats(drop_area.card_in_area.animal_part.animal)
+		drop_area.card_in_area.body_part_state_machine.reset_state()
+	transition_requested.emit(self, BodyPartState.State.Released)

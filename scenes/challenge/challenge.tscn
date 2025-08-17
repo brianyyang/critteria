@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://cw31bqkdsxw7u"]
+
+[ext_resource type="Script" uid="uid://cetyub10cet1q" path="res://scripts/challenge/challenge.gd" id="1_67105"]
+[ext_resource type="Texture2D" uid="uid://bpigqxmdjkhk5" path="res://assets/backgrounds/nature_5/orig.png" id="2_1i53p"]
+[ext_resource type="PackedScene" uid="uid://c4lwvrgypfgym" path="res://scenes/cards/animal_combo.tscn" id="3_du8pn"]
+[ext_resource type="Script" uid="uid://cfw4ywbh3agh2" path="res://scripts/hand.gd" id="4_s6uem"]
+[ext_resource type="PackedScene" uid="uid://dc2nw2w335ql" path="res://scenes/cards/body_part_ui.tscn" id="5_bwqvu"]
+[ext_resource type="Resource" uid="uid://cis3yao0x75gb" path="res://resources/animals/parts/frog_head.tres" id="6_1e568"]
+[ext_resource type="Resource" uid="uid://d07b1vabbmpc8" path="res://resources/animals/parts/capybara_torso.tres" id="7_mkhl2"]
+[ext_resource type="Resource" uid="uid://ddop764tb24l1" path="res://resources/animals/parts/capybara_head.tres" id="8_xuog0"]
+[ext_resource type="Resource" uid="uid://6qadxi7ohg25" path="res://resources/animals/parts/frog_torso.tres" id="9_gjerw"]
+[ext_resource type="Resource" uid="uid://d4a3v7exxhy45" path="res://resources/animals/parts/frog_lower.tres" id="10_wfg71"]
+[ext_resource type="Resource" uid="uid://oicawx1d0bxf" path="res://resources/animals/parts/beetle_head.tres" id="11_4akn8"]
+
+[node name="Contest" type="Node2D"]
+script = ExtResource("1_67105")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.377919, 0.377919, 0.377919, 1)
+position = Vector2(0, 8.34465e-07)
+scale = Vector2(0.888889, 0.888889)
+texture = ExtResource("2_1i53p")
+centered = false
+
+[node name="ContestUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
+
+[node name="AnimalCombo" parent="ContestUI" instance=ExtResource("3_du8pn")]
+offset_left = 158.0
+offset_top = 29.0
+offset_right = 272.0
+offset_bottom = 113.0
+
+[node name="Hand" type="HBoxContainer" parent="ContestUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -108.0
+offset_right = 128.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+script = ExtResource("4_s6uem")
+
+[node name="BodyPartUI" parent="ContestUI/Hand" instance=ExtResource("5_bwqvu")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+animal_part = ExtResource("6_1e568")
+
+[node name="BodyPartUI2" parent="ContestUI/Hand" instance=ExtResource("5_bwqvu")]
+layout_mode = 2
+size_flags_vertical = 4
+animal_part = ExtResource("7_mkhl2")
+
+[node name="BodyPartUI3" parent="ContestUI/Hand" instance=ExtResource("5_bwqvu")]
+layout_mode = 2
+size_flags_vertical = 4
+animal_part = ExtResource("8_xuog0")
+
+[node name="BodyPartUI4" parent="ContestUI/Hand" instance=ExtResource("5_bwqvu")]
+layout_mode = 2
+animal_part = ExtResource("9_gjerw")
+
+[node name="BodyPartUI5" parent="ContestUI/Hand" instance=ExtResource("5_bwqvu")]
+layout_mode = 2
+animal_part = ExtResource("10_wfg71")
+
+[node name="BodyPartUI6" parent="ContestUI/Hand" instance=ExtResource("5_bwqvu")]
+layout_mode = 2
+animal_part = ExtResource("11_4akn8")

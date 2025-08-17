@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4lwvrgypfgym"]
+[gd_scene load_steps=5 format=3 uid="uid://c4lwvrgypfgym"]
 
-[ext_resource type="Script" uid="uid://5iqe1ruld7bp" path="res://scripts/body_drop_area.gd" id="1_c0ka6"]
+[ext_resource type="Script" uid="uid://5iqe1ruld7bp" path="res://scripts/body_parts/body_drop_area.gd" id="1_c0ka6"]
 [ext_resource type="Texture2D" uid="uid://px65ibxafwcd" path="res://assets/animal_combo.png" id="1_u0bkr"]
+[ext_resource type="PackedScene" uid="uid://g5dh4rpmqvyg" path="res://scenes/cards/stats_tooltip.tscn" id="3_whtba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbfse"]
 size = Vector2(38, 84)
@@ -14,11 +15,12 @@ offset_right = 114.0
 offset_bottom = 84.0
 mouse_filter = 2
 
-[node name="LowerDropArea" type="Area2D" parent="." node_paths=PackedStringArray("hovered_sprite")]
+[node name="LowerDropArea" type="Area2D" parent="." node_paths=PackedStringArray("hovered_sprite", "stats_tooltip")]
 position = Vector2(19, 42)
 collision_layer = 8
 script = ExtResource("1_c0ka6")
 hovered_sprite = NodePath("HoveredSprite")
+stats_tooltip = NodePath("../StatsTooltip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LowerDropArea"]
 shape = SubResource("RectangleShape2D_rbfse")
@@ -36,12 +38,13 @@ texture = ExtResource("1_u0bkr")
 region_enabled = true
 region_rect = Rect2(19, 0, 19, 42)
 
-[node name="TorsoDropArea" type="Area2D" parent="." node_paths=PackedStringArray("hovered_sprite")]
+[node name="TorsoDropArea" type="Area2D" parent="." node_paths=PackedStringArray("hovered_sprite", "stats_tooltip")]
 position = Vector2(57, 42)
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_c0ka6")
 hovered_sprite = NodePath("HoveredSprite")
+stats_tooltip = NodePath("../StatsTooltip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TorsoDropArea"]
 shape = SubResource("RectangleShape2D_rbfse")
@@ -59,12 +62,13 @@ texture = ExtResource("1_u0bkr")
 region_enabled = true
 region_rect = Rect2(57, 0, 19, 42)
 
-[node name="HeadDropArea" type="Area2D" parent="." node_paths=PackedStringArray("hovered_sprite")]
+[node name="HeadDropArea" type="Area2D" parent="." node_paths=PackedStringArray("hovered_sprite", "stats_tooltip")]
 position = Vector2(95, 42)
 collision_layer = 32
 collision_mask = 4
 script = ExtResource("1_c0ka6")
 hovered_sprite = NodePath("HoveredSprite")
+stats_tooltip = NodePath("../StatsTooltip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadDropArea"]
 shape = SubResource("RectangleShape2D_rbfse")
@@ -81,6 +85,10 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_u0bkr")
 region_enabled = true
 region_rect = Rect2(19, 0, 19, 42)
+
+[node name="StatsTooltip" parent="." instance=ExtResource("3_whtba")]
+position = Vector2(121, 15)
+scale = Vector2(2, 2)
 
 [connection signal="area_entered" from="LowerDropArea" to="LowerDropArea" method="_on_body_part_entered"]
 [connection signal="area_exited" from="LowerDropArea" to="LowerDropArea" method="_on_body_part_exited"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://g5dh4rpmqvyg"]
+
+[ext_resource type="Script" uid="uid://dfu7wdk014tng" path="res://scripts/body_parts/stats_tooltip.gd" id="1_8p8uw"]
+[ext_resource type="Texture2D" uid="uid://v61roq431sc" path="res://assets/tooltip_bases.png" id="1_lv6r0"]
+[ext_resource type="Texture2D" uid="uid://c6xstbpx8q2t5" path="res://assets/tooltip_stats.png" id="1_ofw4w"]
+[ext_resource type="Theme" uid="uid://cdanta58cjhyd" path="res://main_theme.tres" id="2_ofw4w"]
+
+[node name="StatsTooltip" type="Node2D" node_paths=PackedStringArray("card_sprite", "speed_text", "power_text", "endurance_text", "swim_text")]
+script = ExtResource("1_8p8uw")
+card_sprite = NodePath("Card")
+speed_text = NodePath("Speed")
+power_text = NodePath("Power")
+endurance_text = NodePath("Endurance")
+swim_text = NodePath("Swim")
+
+[node name="Card" type="Sprite2D" parent="."]
+texture = ExtResource("1_lv6r0")
+centered = false
+region_enabled = true
+region_rect = Rect2(132, 0, 44, 28)
+
+[node name="Stats" type="Sprite2D" parent="."]
+texture = ExtResource("1_ofw4w")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 44, 28)
+
+[node name="Speed" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 15.0
+offset_right = 22.0
+offset_bottom = 26.0
+theme = ExtResource("2_ofw4w")
+text = " 0"
+
+[node name="Power" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 2.0
+offset_right = 22.0
+offset_bottom = 13.0
+theme = ExtResource("2_ofw4w")
+text = " 0"
+
+[node name="Endurance" type="Label" parent="."]
+offset_left = 33.0
+offset_top = 2.0
+offset_right = 43.0
+offset_bottom = 13.0
+theme = ExtResource("2_ofw4w")
+text = " 0"
+
+[node name="Swim" type="Label" parent="."]
+offset_left = 33.0
+offset_top = 15.0
+offset_right = 43.0
+offset_bottom = 26.0
+theme = ExtResource("2_ofw4w")
+text = " 0"

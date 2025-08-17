@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://dc2nw2w335ql"]
+
+[ext_resource type="Script" uid="uid://oqpv42uca77b" path="res://scripts/body_parts/body_part_ui.gd" id="1_uh4gl"]
+[ext_resource type="Texture2D" uid="uid://dw1xqcm63kuet" path="res://assets/animals.png" id="2_tlgov"]
+[ext_resource type="Resource" uid="uid://bqe2mohl61haf" path="res://resources/animals/parts/beetle_torso.tres" id="2_wvwd1"]
+[ext_resource type="Texture2D" uid="uid://c7b241625i8nc" path="res://assets/cards.png" id="3_wvwd1"]
+[ext_resource type="Script" uid="uid://biab2dkoolsu3" path="res://scripts/body_parts/body_part_states/body_part_state_machine.gd" id="5_iwy17"]
+[ext_resource type="Script" uid="uid://bufepm0y1qknd" path="res://scripts/body_parts/body_part_states/body_part_base_state.gd" id="6_th2ka"]
+[ext_resource type="Script" uid="uid://dt5diujsxljo6" path="res://scripts/body_parts/body_part_states/body_part_clicked_state.gd" id="7_ktxu1"]
+[ext_resource type="Script" uid="uid://dg3s50q7gu41u" path="res://scripts/body_parts/body_part_states/body_part_dragging_state.gd" id="8_bw4jc"]
+[ext_resource type="Script" uid="uid://bxiunklr54r4x" path="res://scripts/body_parts/body_part_states/body_part_released_state.gd" id="9_bewqa"]
+[ext_resource type="PackedScene" uid="uid://g5dh4rpmqvyg" path="res://scenes/cards/stats_tooltip.tscn" id="10_ywego"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vq0d7"]
+size = Vector2(38, 84)
+
+[node name="BodyPartUI" type="Control" node_paths=PackedStringArray("body_part_state_machine", "body_sprite", "card_sprite", "drop_point_detector", "top_tooltip", "bot_tooltip")]
+custom_minimum_size = Vector2(38, 84)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 38.0
+offset_bottom = 84.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+script = ExtResource("1_uh4gl")
+body_part_state_machine = NodePath("BodyPartStateMachine")
+animal_part = ExtResource("2_wvwd1")
+body_sprite = NodePath("BodyPartSprite")
+card_sprite = NodePath("CardSprite")
+drop_point_detector = NodePath("DropPointDetector")
+top_tooltip = NodePath("TopStatsTooltip")
+bot_tooltip = NodePath("BottomStatsTooltip")
+
+[node name="DropPointDetector" type="Area2D" parent="."]
+position = Vector2(1, 1)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
+position = Vector2(18, 41)
+shape = SubResource("RectangleShape2D_vq0d7")
+
+[node name="CardSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("3_wvwd1")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 19, 42)
+
+[node name="BodyPartSprite" type="Sprite2D" parent="."]
+position = Vector2(2, 7)
+scale = Vector2(2, 2)
+texture = ExtResource("2_tlgov")
+centered = false
+region_enabled = true
+region_rect = Rect2(68, 70, 17, 35)
+
+[node name="BodyPartStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_iwy17")
+initial_state = NodePath("BodyPartBaseState")
+
+[node name="BodyPartBaseState" type="Node" parent="BodyPartStateMachine"]
+script = ExtResource("6_th2ka")
+state = null
+
+[node name="BodyPartClickedState" type="Node" parent="BodyPartStateMachine"]
+script = ExtResource("7_ktxu1")
+state = 1
+
+[node name="BodyPartDraggingState" type="Node" parent="BodyPartStateMachine"]
+script = ExtResource("8_bw4jc")
+state = 2
+
+[node name="BodyPartReleasedState" type="Node" parent="BodyPartStateMachine"]
+script = ExtResource("9_bewqa")
+state = 3
+
+[node name="TopStatsTooltip" parent="." instance=ExtResource("10_ywego")]
+position = Vector2(-25, -61)
+scale = Vector2(2, 2)
+
+[node name="BottomStatsTooltip" parent="." instance=ExtResource("10_ywego")]
+position = Vector2(-24, 89)
+scale = Vector2(2, 2)
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="area_entered" from="DropPointDetector" to="." method="_on_drop_point_detector_area_entered"]
+[connection signal="area_exited" from="DropPointDetector" to="." method="_on_drop_point_detector_area_exited"]

@@ -8,11 +8,13 @@ const CARD_SPRITE_HEIGHT = 42
 
 signal reparent_requested(which_body_part: BodyPartUI)
 
-@export var card_state_machine: CardStateMachine
+@export var body_part_state_machine: BodyPartStateMachine
 @export var animal_part: AnimalPart
 @export var body_sprite: Sprite2D
 @export var card_sprite: Sprite2D
 @export var drop_point_detector: Area2D
+@export var top_tooltip: StatsTooltip
+@export var bot_tooltip: StatsTooltip
 
 var target_drop_points: Array[BodyDropArea] = []
 
@@ -25,6 +27,7 @@ func _ready() -> void:
 	var card_sprite_xy = animal_part.getCardSpriteCoordinates()
 	card_sprite.region_rect.position.x = card_sprite_xy.x * CARD_SPRITE_WIDTH
 	card_sprite.region_rect.position.y = card_sprite_xy.y * CARD_SPRITE_HEIGHT
+	set_tooltips(card_sprite_xy)
 
 	var mask = animal_part.getBodyPartDropAreaMask()
 	drop_point_detector.set_collision_mask_value(mask, true)
@@ -32,19 +35,19 @@ func _ready() -> void:
 	var layer = animal_part.getBodyPartSelectorLayer()
 	drop_point_detector.set_collision_layer_value(layer, true)
 
-	card_state_machine.init(self)
+	body_part_state_machine.init(self)
 
 func _input(event: InputEvent) -> void:
-	card_state_machine.on_input(event)
+	body_part_state_machine.on_input(event)
 
 func _on_gui_input(event: InputEvent) -> void:
-	card_state_machine.on_gui_input(event)
+	body_part_state_machine.on_gui_input(event)
 
 func _on_mouse_entered() -> void:
-	card_state_machine.on_mouse_entered()
+	body_part_state_machine.on_mouse_entered()
 
 func _on_mouse_exited() -> void:
-	card_state_machine.on_mouse_exited()
+	body_part_state_machine.on_mouse_exited()
 
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 	if not target_drop_points.has(area):
@@ -52,3 +55,9 @@ func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 
 func _on_drop_point_detector_area_exited(area: Area2D) -> void:
 	target_drop_points.erase(area)
+
+func set_tooltips(coordinates: Vector2):
+	top_tooltip.set_sprite(coordinates)
+	top_tooltip.add_animal(animal_part.animal)
+	bot_tooltip.set_sprite(coordinates)
+	bot_tooltip.add_animal(animal_part.animal)

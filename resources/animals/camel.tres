@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_igx3j")
 animal_type = 9
+rarity = 2
 power = 0
 speed = 2
 endurance = 3
 swim = 0
-rarity = 2
 metadata/_custom_type_script = "uid://bva6el1dy0te"
