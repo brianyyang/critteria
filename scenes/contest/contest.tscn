@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://cw31bqkdsxw7u"]
+
+[ext_resource type="Texture2D" uid="uid://bpigqxmdjkhk5" path="res://assets/backgrounds/nature_5/orig.png" id="1_bo2eo"]
+[ext_resource type="PackedScene" uid="uid://dc2nw2w335ql" path="res://scenes/card/body_part_ui.tscn" id="2_rqxsh"]
+[ext_resource type="Resource" uid="uid://c5ty6itlg8hf3" path="res://resources/animals/parts/dolphin_lower.tres" id="3_mpf2u"]
+[ext_resource type="Resource" uid="uid://cy82lmofif0ao" path="res://resources/animals/parts/camel_torso.tres" id="4_4vqkc"]
+[ext_resource type="Resource" uid="uid://cis3yao0x75gb" path="res://resources/animals/parts/frog_head.tres" id="4_ok10d"]
+[ext_resource type="PackedScene" uid="uid://c4lwvrgypfgym" path="res://scenes/card/animal_combo.tscn" id="6_4vqkc"]
+
+[node name="Contest" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.377919, 0.377919, 0.377919, 1)
+scale = Vector2(0.888889, 0.888889)
+texture = ExtResource("1_bo2eo")
+centered = false
+
+[node name="ContestUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
+
+[node name="AnimalCombo" parent="ContestUI" instance=ExtResource("6_4vqkc")]
+offset_left = 200.0
+offset_top = 64.0
+offset_right = 314.0
+offset_bottom = 148.0
+
+[node name="Hand" type="HBoxContainer" parent="ContestUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -84.0
+offset_right = 128.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="BodyPartUI" parent="ContestUI/Hand" instance=ExtResource("2_rqxsh")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+animal_part = ExtResource("3_mpf2u")
+
+[node name="BodyPartUI2" parent="ContestUI/Hand" instance=ExtResource("2_rqxsh")]
+layout_mode = 2
+size_flags_vertical = 4
+animal_part = ExtResource("4_4vqkc")
+
+[node name="BodyPartUI3" parent="ContestUI/Hand" instance=ExtResource("2_rqxsh")]
+layout_mode = 2
+size_flags_vertical = 4
+animal_part = ExtResource("4_ok10d")

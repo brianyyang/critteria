@@ -1,31 +1,75 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc2nw2w335ql"]
+[gd_scene load_steps=11 format=3 uid="uid://dc2nw2w335ql"]
 
 [ext_resource type="Script" uid="uid://oqpv42uca77b" path="res://scripts/body_part_ui.gd" id="1_uh4gl"]
 [ext_resource type="Texture2D" uid="uid://dw1xqcm63kuet" path="res://assets/animals.png" id="2_tlgov"]
-[ext_resource type="Resource" uid="uid://d07b1vabbmpc8" path="res://resources/animals/parts/capybara_torso.tres" id="2_wvwd1"]
+[ext_resource type="Resource" uid="uid://bqe2mohl61haf" path="res://resources/animals/parts/beetle_torso.tres" id="2_wvwd1"]
+[ext_resource type="Texture2D" uid="uid://c7b241625i8nc" path="res://assets/cards.png" id="3_wvwd1"]
+[ext_resource type="Script" uid="uid://biab2dkoolsu3" path="res://scripts/card_states/card_state_machine.gd" id="5_iwy17"]
+[ext_resource type="Script" uid="uid://bufepm0y1qknd" path="res://scripts/card_states/card_base_state.gd" id="6_th2ka"]
+[ext_resource type="Script" uid="uid://dt5diujsxljo6" path="res://scripts/card_states/card_clicked_state.gd" id="7_ktxu1"]
+[ext_resource type="Script" uid="uid://dg3s50q7gu41u" path="res://scripts/card_states/card_dragging_state.gd" id="8_bw4jc"]
+[ext_resource type="Script" uid="uid://bxiunklr54r4x" path="res://scripts/card_states/card_released_state.gd" id="9_bewqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vq0d7"]
-size = Vector2(17, 40)
+size = Vector2(38, 84)
 
-[node name="BodyPartUI" type="Control" node_paths=PackedStringArray("sprite")]
+[node name="BodyPartUI" type="Control" node_paths=PackedStringArray("card_state_machine", "body_sprite", "card_sprite", "drop_point_detector")]
+custom_minimum_size = Vector2(38, 84)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 34.0
+offset_bottom = 80.0
+mouse_default_cursor_shape = 2
 script = ExtResource("1_uh4gl")
+card_state_machine = NodePath("CardStateMachine")
 animal_part = ExtResource("2_wvwd1")
-sprite = NodePath("Sprite2D")
+body_sprite = NodePath("BodyPartSprite")
+card_sprite = NodePath("CardSprite")
+drop_point_detector = NodePath("DropPointDetector")
 
 [node name="DropPointDetector" type="Area2D" parent="."]
-collision_mask = 2
-monitorable = false
+position = Vector2(1, 1)
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
+position = Vector2(18, 41)
 shape = SubResource("RectangleShape2D_vq0d7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_tlgov")
+[node name="CardSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("3_wvwd1")
+centered = false
 region_enabled = true
-region_rect = Rect2(17, 0, 17, 40)
+region_rect = Rect2(0, 0, 19, 42)
+
+[node name="BodyPartSprite" type="Sprite2D" parent="."]
+position = Vector2(2, 7)
+scale = Vector2(2, 2)
+texture = ExtResource("2_tlgov")
+centered = false
+region_enabled = true
+region_rect = Rect2(68, 70, 17, 35)
+
+[node name="CardStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_iwy17")
+initial_state = NodePath("CardBaseState")
+
+[node name="CardBaseState" type="Node" parent="CardStateMachine"]
+script = ExtResource("6_th2ka")
+
+[node name="CardClickedState" type="Node" parent="CardStateMachine"]
+script = ExtResource("7_ktxu1")
+state = 1
+
+[node name="CardDraggingState" type="Node" parent="CardStateMachine"]
+script = ExtResource("8_bw4jc")
+state = 2
+
+[node name="CardReleasedState" type="Node" parent="CardStateMachine"]
+script = ExtResource("9_bewqa")
+state = 4
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

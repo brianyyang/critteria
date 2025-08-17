@@ -1,9 +1,79 @@
-[gd_scene format=3 uid="uid://c4lwvrgypfgym"]
+[gd_scene load_steps=4 format=3 uid="uid://c4lwvrgypfgym"]
+
+[ext_resource type="Script" uid="uid://5iqe1ruld7bp" path="res://scripts/body_drop_area.gd" id="1_c0ka6"]
+[ext_resource type="Texture2D" uid="uid://px65ibxafwcd" path="res://assets/animal_combo.png" id="1_u0bkr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbfse"]
+size = Vector2(38, 84)
 
 [node name="AnimalCombo" type="Control"]
+custom_minimum_size = Vector2(114, 84)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 114.0
+offset_bottom = 84.0
+mouse_filter = 2
+
+[node name="LowerDropArea" type="Area2D" parent="."]
+position = Vector2(19, 42)
+collision_layer = 2
+script = ExtResource("1_c0ka6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowerDropArea"]
+shape = SubResource("RectangleShape2D_rbfse")
+
+[node name="Sprite" type="Sprite2D" parent="LowerDropArea"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_u0bkr")
+region_enabled = true
+region_rect = Rect2(0, 0, 19, 42)
+
+[node name="HoveredSprite" type="Sprite2D" parent="LowerDropArea"]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("1_u0bkr")
+region_enabled = true
+region_rect = Rect2(19, 0, 19, 42)
+
+[node name="TorsoDropArea" type="Area2D" parent="."]
+position = Vector2(57, 42)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TorsoDropArea"]
+shape = SubResource("RectangleShape2D_rbfse")
+
+[node name="Sprite" type="Sprite2D" parent="TorsoDropArea"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_u0bkr")
+region_enabled = true
+region_rect = Rect2(38, 0, 19, 42)
+
+[node name="HoveredSprite" type="Sprite2D" parent="TorsoDropArea"]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("1_u0bkr")
+region_enabled = true
+region_rect = Rect2(57, 0, 19, 42)
+
+[node name="HeadDropArea" type="Area2D" parent="."]
+position = Vector2(95, 42)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadDropArea"]
+shape = SubResource("RectangleShape2D_rbfse")
+
+[node name="Sprite" type="Sprite2D" parent="HeadDropArea"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_u0bkr")
+region_enabled = true
+region_rect = Rect2(0, 0, 19, 42)
+
+[node name="HoveredSprite" type="Sprite2D" parent="HeadDropArea"]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("1_u0bkr")
+region_enabled = true
+region_rect = Rect2(19, 0, 19, 42)
+
+[connection signal="area_entered" from="LowerDropArea" to="LowerDropArea" method="_on_body_part_entered"]
+[connection signal="area_exited" from="LowerDropArea" to="LowerDropArea" method="_on_body_part_exited"]

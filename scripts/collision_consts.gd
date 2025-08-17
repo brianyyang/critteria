@@ -1,0 +1,8 @@
+extends Node
+
+const LOWER_SELECTOR = 1
+const TORSO_SELECTOR = 2
+const HEAD_SELECTOR = 3
+const LOWER_DROP_AREA = 4
+const TORSO_DROP_AREA = 5
+const HEAD_DROP_AREA = 6
