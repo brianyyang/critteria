@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw31bqkdsxw7u"]
+[gd_scene load_steps=8 format=3 uid="uid://cw31bqkdsxw7u"]
 
 [ext_resource type="Texture2D" uid="uid://bpigqxmdjkhk5" path="res://assets/backgrounds/nature_5/orig.png" id="1_bo2eo"]
 [ext_resource type="PackedScene" uid="uid://dc2nw2w335ql" path="res://scenes/card/body_part_ui.tscn" id="2_rqxsh"]
 [ext_resource type="Resource" uid="uid://c5ty6itlg8hf3" path="res://resources/animals/parts/dolphin_lower.tres" id="3_mpf2u"]
+[ext_resource type="Script" uid="uid://cfw4ywbh3agh2" path="res://scripts/hand.gd" id="3_ofswt"]
 [ext_resource type="Resource" uid="uid://cy82lmofif0ao" path="res://resources/animals/parts/camel_torso.tres" id="4_4vqkc"]
 [ext_resource type="Resource" uid="uid://cis3yao0x75gb" path="res://resources/animals/parts/frog_head.tres" id="4_ok10d"]
 [ext_resource type="PackedScene" uid="uid://c4lwvrgypfgym" path="res://scenes/card/animal_combo.tscn" id="6_4vqkc"]
@@ -37,6 +38,7 @@ grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
+script = ExtResource("3_ofswt")
 
 [node name="BodyPartUI" parent="ContestUI/Hand" instance=ExtResource("2_rqxsh")]
 layout_mode = 2

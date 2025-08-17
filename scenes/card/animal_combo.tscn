@@ -14,10 +14,11 @@ offset_right = 114.0
 offset_bottom = 84.0
 mouse_filter = 2
 
-[node name="LowerDropArea" type="Area2D" parent="."]
+[node name="LowerDropArea" type="Area2D" parent="." node_paths=PackedStringArray("hovered_sprite")]
 position = Vector2(19, 42)
-collision_layer = 2
+collision_layer = 8
 script = ExtResource("1_c0ka6")
+hovered_sprite = NodePath("HoveredSprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LowerDropArea"]
 shape = SubResource("RectangleShape2D_rbfse")
@@ -35,9 +36,12 @@ texture = ExtResource("1_u0bkr")
 region_enabled = true
 region_rect = Rect2(19, 0, 19, 42)
 
-[node name="TorsoDropArea" type="Area2D" parent="."]
+[node name="TorsoDropArea" type="Area2D" parent="." node_paths=PackedStringArray("hovered_sprite")]
 position = Vector2(57, 42)
-collision_layer = 4
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_c0ka6")
+hovered_sprite = NodePath("HoveredSprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TorsoDropArea"]
 shape = SubResource("RectangleShape2D_rbfse")
@@ -55,9 +59,12 @@ texture = ExtResource("1_u0bkr")
 region_enabled = true
 region_rect = Rect2(57, 0, 19, 42)
 
-[node name="HeadDropArea" type="Area2D" parent="."]
+[node name="HeadDropArea" type="Area2D" parent="." node_paths=PackedStringArray("hovered_sprite")]
 position = Vector2(95, 42)
-collision_layer = 8
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("1_c0ka6")
+hovered_sprite = NodePath("HoveredSprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadDropArea"]
 shape = SubResource("RectangleShape2D_rbfse")
@@ -77,3 +84,7 @@ region_rect = Rect2(19, 0, 19, 42)
 
 [connection signal="area_entered" from="LowerDropArea" to="LowerDropArea" method="_on_body_part_entered"]
 [connection signal="area_exited" from="LowerDropArea" to="LowerDropArea" method="_on_body_part_exited"]
+[connection signal="area_entered" from="TorsoDropArea" to="TorsoDropArea" method="_on_body_part_entered"]
+[connection signal="area_exited" from="TorsoDropArea" to="TorsoDropArea" method="_on_body_part_exited"]
+[connection signal="area_entered" from="HeadDropArea" to="HeadDropArea" method="_on_body_part_entered"]
+[connection signal="area_exited" from="HeadDropArea" to="HeadDropArea" method="_on_body_part_exited"]

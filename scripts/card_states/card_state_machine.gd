@@ -23,7 +23,7 @@ func on_input(event: InputEvent) -> void:
 
 func on_gui_input(event: InputEvent) -> void:
 	if current_state:
-		current_state.on_input(event)
+		current_state.on_gui_input(event)
 
 func on_mouse_entered() -> void:
 	if current_state:
