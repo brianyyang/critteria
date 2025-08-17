@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardPile" load_steps=12 format=3 uid="uid://ti2ppfpyxicj"]
+
+[ext_resource type="Script" uid="uid://b0dry3sjhfi2" path="res://resources/animals/parts/animal_part.gd" id="1_7wumh"]
+[ext_resource type="Resource" uid="uid://oicawx1d0bxf" path="res://resources/animals/parts/beetle_head.tres" id="2_so8hc"]
+[ext_resource type="Resource" uid="uid://cwrxnyqxvbmph" path="res://resources/animals/parts/beetle_lower.tres" id="3_cavyf"]
+[ext_resource type="Resource" uid="uid://bqe2mohl61haf" path="res://resources/animals/parts/beetle_torso.tres" id="4_gwa4k"]
+[ext_resource type="Resource" uid="uid://ddop764tb24l1" path="res://resources/animals/parts/capybara_head.tres" id="5_hvm0r"]
+[ext_resource type="Resource" uid="uid://d0md7nfqvy36i" path="res://resources/animals/parts/capybara_lower.tres" id="6_jeu7l"]
+[ext_resource type="Resource" uid="uid://d07b1vabbmpc8" path="res://resources/animals/parts/capybara_torso.tres" id="7_gffq4"]
+[ext_resource type="Resource" uid="uid://cis3yao0x75gb" path="res://resources/animals/parts/frog_head.tres" id="8_mi6kj"]
+[ext_resource type="Resource" uid="uid://d4a3v7exxhy45" path="res://resources/animals/parts/frog_lower.tres" id="9_ryls1"]
+[ext_resource type="Resource" uid="uid://6qadxi7ohg25" path="res://resources/animals/parts/frog_torso.tres" id="10_4pvrb"]
+[ext_resource type="Script" uid="uid://b8h2tjxlud6o7" path="res://resources/card_pile/card_pile.gd" id="11_3o765"]
+
+[resource]
+script = ExtResource("11_3o765")
+cards = Array[ExtResource("1_7wumh")]([ExtResource("2_so8hc"), ExtResource("3_cavyf"), ExtResource("4_gwa4k"), ExtResource("5_hvm0r"), ExtResource("6_jeu7l"), ExtResource("7_gffq4"), ExtResource("8_mi6kj"), ExtResource("9_ryls1"), ExtResource("10_4pvrb")])
+metadata/_custom_type_script = "uid://b8h2tjxlud6o7"

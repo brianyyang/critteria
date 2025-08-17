@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_kpsql")
 animal_type = 2
+rarity = 0
 power = 2
 speed = -1
 endurance = 1

@@ -46,3 +46,6 @@ func _on_transition_requested(from: CardState, to: CardState.State):
 
 	new_state.enter()
 	current_state = new_state
+
+func reset_state() -> void:
+	current_state.transition_requested.emit(current_state, CardState.State.Base)

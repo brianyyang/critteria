@@ -28,4 +28,11 @@ func on_input(event: InputEvent) -> void:
 		if body_part_ui.target_drop_points.is_empty():
 			transition_requested.emit(self, CardState.State.Base)
 		else:
-			transition_requested.emit(self, CardState.State.Released)
+			if not body_part_ui.target_drop_points.is_empty():
+				var drop_area = body_part_ui.target_drop_points.get(0) as BodyDropArea
+				handle_drop_in_area(drop_area)
+
+func handle_drop_in_area(drop_area: BodyDropArea) -> void:
+	if drop_area.occupied:
+		drop_area.card_in_area.card_state_machine.reset_state()
+	transition_requested.emit(self, CardState.State.Released)

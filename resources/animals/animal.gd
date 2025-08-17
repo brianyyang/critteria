@@ -14,8 +14,9 @@ enum Rarity {
 }
 
 @export var animal_type: Type
+@export var rarity: Rarity
+@export_group("Stats")
 @export var power: int
 @export var speed: int
 @export var endurance: int
 @export var swim: int
-@export var rarity: Rarity
