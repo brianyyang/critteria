@@ -42,3 +42,9 @@ func format_text(stat_value: int, label: Label) -> void:
 	var formatted = modifier + str(stat_value)
 	label.text = formatted
 	label.add_theme_color_override("font_color", color)
+
+func set_goal_stats(challenge: Challenge) -> void:
+	format_text(challenge.speed, speed_text)
+	format_text(challenge.power, power_text)
+	format_text(challenge.endurance, endurance_text)
+	format_text(challenge.swim, swim_text)

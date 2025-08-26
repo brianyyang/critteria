@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Challenge" load_steps=2 format=3 uid="uid://orpkf6sgmgiv"]
+
+[ext_resource type="Script" uid="uid://bwtwougsdnho4" path="res://resources/challenges/challenge.gd" id="1_fm5hv"]
+
+[resource]
+script = ExtResource("1_fm5hv")
+name = "Random Goal"
+discard_limit = 3
+animal_limit = 3
+speed = 2
+power = 2
+endurance = 2
+swim = 2
+metadata/_custom_type_script = "uid://bwtwougsdnho4"

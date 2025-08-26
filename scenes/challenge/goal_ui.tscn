@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://vbu8g5nfw5m4"]
+
+[ext_resource type="PackedScene" uid="uid://g5dh4rpmqvyg" path="res://scenes/cards/stats_tooltip.tscn" id="1_6da74"]
+[ext_resource type="Script" uid="uid://1vuglbhq7r0c" path="res://scenes/challenge/goal_ui.gd" id="1_tt6xr"]
+[ext_resource type="Texture2D" uid="uid://bx4vp4qkfpb8s" path="res://assets/goal_label.png" id="3_u6wl1"]
+[ext_resource type="Theme" uid="uid://cdanta58cjhyd" path="res://main_theme.tres" id="4_eltqt"]
+
+[node name="GoalUI" type="Node2D" node_paths=PackedStringArray("title", "animals_label", "discards_label", "goal_tooltip", "score_tooltip")]
+script = ExtResource("1_tt6xr")
+title = NodePath("TitleControl/Title")
+animals_label = NodePath("AnimalsControl/Animals")
+discards_label = NodePath("DiscardsControl/Discards")
+goal_tooltip = NodePath("GoalTooltip")
+score_tooltip = NodePath("ScoreTooltip")
+
+[node name="GoalTooltip" parent="." instance=ExtResource("1_6da74")]
+position = Vector2(0, 35)
+scale = Vector2(3, 3)
+
+[node name="ScoreTooltip" parent="." instance=ExtResource("1_6da74")]
+position = Vector2(0, 124)
+scale = Vector2(3, 3)
+
+[node name="TitleBG" type="Sprite2D" parent="."]
+position = Vector2(66, 15)
+scale = Vector2(3, 3)
+texture = ExtResource("3_u6wl1")
+region_enabled = true
+region_rect = Rect2(0, 0, 44, 10)
+
+[node name="TitleControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 129.0
+offset_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title" type="Label" parent="TitleControl"]
+custom_minimum_size = Vector2(20, 12)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -11.0
+offset_right = 21.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_eltqt")
+theme_override_font_sizes/font_size = 18
+text = "Title"
+
+[node name="RoundInfoBG" type="Sprite2D" parent="."]
+position = Vector2(66, 228)
+scale = Vector2(3, 3)
+texture = ExtResource("3_u6wl1")
+region_enabled = true
+region_rect = Rect2(0, 0, 44, 10)
+
+[node name="AnimalsControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 216.0
+offset_right = 66.0
+offset_bottom = 240.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Animals" type="Label" parent="AnimalsControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = -5.5
+offset_right = 23.5
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_eltqt")
+text = "Animals: 0"
+
+[node name="DiscardsControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 216.0
+offset_right = 127.0
+offset_bottom = 240.0
+
+[node name="Discards" type="Label" parent="DiscardsControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -5.5
+offset_right = 27.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_eltqt")
+theme_override_font_sizes/font_size = 9
+text = "Discards: 0"

@@ -1,19 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4lwvrgypfgym"]
+[gd_scene load_steps=6 format=3 uid="uid://c4lwvrgypfgym"]
 
 [ext_resource type="Script" uid="uid://5iqe1ruld7bp" path="res://scripts/body_parts/body_drop_area.gd" id="1_c0ka6"]
 [ext_resource type="Texture2D" uid="uid://px65ibxafwcd" path="res://assets/animal_combo.png" id="1_u0bkr"]
+[ext_resource type="Script" uid="uid://b7u6tyeqmyvel" path="res://scripts/body_parts/animal_combo_handler.gd" id="1_uacow"]
 [ext_resource type="PackedScene" uid="uid://g5dh4rpmqvyg" path="res://scenes/cards/stats_tooltip.tscn" id="3_whtba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbfse"]
 size = Vector2(38, 84)
 
-[node name="AnimalCombo" type="Control"]
+[node name="AnimalCombo" type="Control" node_paths=PackedStringArray("stats_tooltip")]
 custom_minimum_size = Vector2(114, 84)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 114.0
 offset_bottom = 84.0
 mouse_filter = 2
+script = ExtResource("1_uacow")
+stats_tooltip = NodePath("StatsTooltip")
 
 [node name="LowerDropArea" type="Area2D" parent="." node_paths=PackedStringArray("hovered_sprite", "stats_tooltip")]
 position = Vector2(19, 42)
